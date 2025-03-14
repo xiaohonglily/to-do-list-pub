@@ -1,0 +1,26 @@
+
+
+# 忽略 Google Chrome 和其他浏览器缓存、扩展、状态文件等
+**/AppData/Local/Google/Chrome/User Data/*
+**/.cache/*
+
+# 忽略操作系统和 IDE 生成的文件
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*.swp
+
+# 忽略 ESLint 配置文件（如果不需要）
+package-lock.json
+eslint.config.mjs
+package.json
+
+# 忽略 node_modules 目录
+node_modules/
+
+
+_headers
+test.js
+
+
