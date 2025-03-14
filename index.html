@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--<meta http-equiv="Content-Security-Policy" content="
+        default-src 'self'; 
+        object-src 'none'; 
+        frame-ancestors 'none'; 
+        script-src 'self' https://cdnjs.cloudflare.com; 
+        style-src 'self'; 
+        img-src 'self'; 
+        base-uri 'self'; 
+        form-action 'self'; 
+        upgrade-insecure-requests;">-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="a to-do-list application">
+    <link rel="stylesheet" href="styles.css">
+    <title>To Do List</title>
+</head>
+
+<body>
+    <div id="content" class="content">
+        <!-- Header -->
+        <div id="header" class="header">
+            <div id="logo" class="logo">XIAOHONG LI &nbsp;&nbsp;&nbsp;&nbsp; To-Do-List</div>
+            <div id="search" class="search">
+                <span class="icon icon-search"></span>
+                <input id="searchInput" class="searchInput" type="text" placeholder="Search" name="search">
+            </div>
+            <span id="setting" class="icon icon-cog setting"></span>
+        </div>
+
+        <!-- Left Side Folders -->
+        <nav id="left-side" class="left-side">
+            <div id="folder">
+                <!-- New Folder Button -->
+                <div id="newFileBtn"><span id="lists">Lists&nbsp;&nbsp;</span><span id="listsPlusIcon"
+                        class="icon icon-plus"></span></div>
+                <div id="newFolderInputContainer" class="saveCancelSet">
+                    <input type="text" id="newFolderInput" class="newInput">
+                    <button id="saveFolderBtn" class="saveBtn">SAVE</button>
+                    <button id="cancelFolderBtn" class="cancelBtn">CANCEL</button>
+                </div>
+                <!-- File List -->
+                <ul id="fileList" class="sortable-list">
+                    <li class="folder-item">My Tasks</li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main -->
+        <article id="main" class="main">
+            <div id="editor">
+                <!-- File Title -->
+                <div id="editorHeader">
+                    <div id="fileTitleContainer">
+                        <span class="icon icon-arrow_back_ios backIcon"></span>
+                        <h2 id="fileTitle">My Tasks</h2>
+                    </div>
+                    <div id="renameInputContainer" class="saveCancelSet">
+                        <input type="text" id="renameInput" class="newInput" />
+                        <button id="saveRenameBtn" class="saveBtn">SAVE</button>
+                        <button id="cancelRenameBtn" class="cancelBtn">CANCEL</button>
+                    </div>
+                    <!-- File Menu -->
+                    <svg id="fileMenuBtn" class="moreVertIcon" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
+                        <path
+                            d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2m0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2m0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2"
+                            transform="scale(0.7) translate(5 5)">
+                        </path>
+                    </svg>
+                    <ul id="fileMenu" class="fileMenu">
+                        <li id="viewCompleted">View completed</li>
+                        <!-- <li id="orderByDate">Order by date</li> -->
+                        <li id="renameFolderBtn" class="rename-btn">Rename list</li>
+                        <li id="deleteFolderBtn" class="delete-btn">Delete list</li>
+                        <!-- <li>Print/Export</li> -->
+                    </ul>
+                </div>
+                <!-- Task List -->
+                <ul id="taskList">
+                    <!-- Task items will be dynamically added here
+                    <li>
+                        <span class="icon icon-circle"></span> // Default
+                        <span class="icon icon-check_circle"></span> // Hover
+                        <textarea rows="1" class="list-item"></textarea>
+                        <span class="icon icon-dots-three-vertical1"></span>
+                        <ul class="task-menu">
+                            <li class="deletOption">Delete this task</li>
+                        </ul>
+                    </li>
+                    -->
+                </ul>
+                <!-- Completed Task List -->
+                <ul id="completedTaskList">
+                    <!-- Completed task items will be dynamically added here
+                    <li id="completedTask">
+                        <span class="icon icon-check1"></span> // Complete
+                        <textarea rows="1" class="list-item completed"></textarea>
+                        <span class="icon icon-trash-o"></span>
+                    </li>
+                    -->
+                </ul>
+                <!-- Add Task Button -->
+                <svg id="addTaskBtn" class="addIcon" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" transform="scale(0.7) translate(5 5)"></path>
+                </svg>
+
+            </div>
+        </article>
+
+        <!-- Right Side Details -->
+        <aside id="right-side" class="right-side">
+            <!-- Task Duetitle Input -->
+            <textarea rows="1" id="taskInput" class="taskInput" name="task"></textarea>
+            <!-- Task Date -->
+            <input type="date" id="taskDate" name="date">
+            <!-- Task Detail -->
+            <div id="detail-content" class="detail-content">
+                <span class="icon icon-read-more"></span>
+                <textarea id="taskDetail" class="detail" placeholder="Add details..."></textarea>
+            </div>
+        </aside>
+
+
+    </div>
+    <!-- Import SortableJS via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
