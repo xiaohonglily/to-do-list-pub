@@ -1,0 +1,639 @@
+/* Overall Layout */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    /* Ensure this is set if you want 1rem to equal 16px */
+}
+
+html,
+body {
+    overflow-y: auto;
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333333;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    padding: 0;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1.3fr 3.5fr 3fr;
+    grid-template-rows: 45px 1fr;
+    grid-template-areas: "header header header" "left-side main right-side";
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    height: 60px;
+}
+
+.left-side {
+    grid-area: left-side;
+}
+
+.main {
+    grid-area: main;
+}
+
+.right-side {
+    grid-area: right-side;
+}
+
+.left-side,
+.main,
+.right-side {
+    overflow-y: auto;
+    height: 100%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.list-item::-webkit-scrollbar,
+.taskInput::-webkit-scrollbar,
+.detail::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.list-item,
+.taskInput,
+.detail {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Custom scrollbar styles */
+body::-webkit-scrollbar,
+.left-side::-webkit-scrollbar,
+.main::-webkit-scrollbar,
+.right-side::-webkit-scrollbar {
+    width: 6px;
+    opacity: 0;
+    /* Initial state hides scrollbar */
+    transition: opacity 0.3s ease;
+    /* Add transition effect */
+}
+
+body:hover::-webkit-scrollbar,
+.left-side:hover::-webkit-scrollbar,
+.main:hover::-webkit-scrollbar,
+.right-side:hover::-webkit-scrollbar {
+    opacity: 1;
+    /* Show scrollbar on hover */
+}
+
+body::-webkit-scrollbar-thumb,
+.left-side::-webkit-scrollbar-thumb,
+.main::-webkit-scrollbar-thumb,
+.right-side::-webkit-scrollbar-thumb {
+    background-color: #e1dddd;
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover,
+.left-side::-webkit-scrollbar-thumb:hover,
+.main::-webkit-scrollbar-thumb:hover,
+.right-side::-webkit-scrollbar-thumb:hover {
+    background-color: #bdb9b9;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    display: grid;
+    grid-template-columns: 1fr max-content 50px;
+    grid-template-areas: "logo search setting";
+    gap: 20px;
+    align-items: center;
+    border-bottom: 0.2px solid #e1dddd;
+    background-color: #ffc2c7;
+    padding: 0px 20px;
+    z-index: 10;
+    margin: 0;
+}
+
+#logo {
+    grid-area: logo;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333333;
+}
+
+#search {
+    grid-area: search;
+    border: none;
+    padding: 3px 8px;
+    border-radius: 8px;
+    background-color: #fee3e6;
+    transition: width 0.3s ease;
+    display: none;
+}
+
+.search span {
+    font-size: 0.8rem;
+    cursor: text;
+}
+
+.search input {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 0.8rem;
+    width: 130px;
+}
+
+#setting {
+    grid-area: setting;
+    font-size: 1.4rem;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+#setting:hover {
+    background-color: #fee3e6;
+}
+
+/* ** Left Side Folders ** */
+
+/* * New Folder Button * */
+#folder {
+    width: 100%;
+    padding: 0px;
+    background-color: #f5f5f5;
+}
+
+#newFileBtn {
+    font-size: 1.1rem;
+    margin: 5px 0px;
+    padding: 30px 10px 10px 30px;
+    cursor: pointer;
+    width: 100%;
+    border-bottom: 0.2px solid #e1dddd;
+}
+
+#newFileBtn:hover {
+    background-color: #e1dddd;
+}
+
+#lists {
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+#listsPlusIcon {
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: #9c9a9b;
+}
+
+/* Save Cancel Set */
+.saveCancelSet {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "newInput newInput" "saveBtn cancelBtn";
+    padding: 10px 10px;
+    gap: 10px;
+}
+
+.newInput {
+    grid-area: newInput;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    padding: 8px 5px;
+}
+
+.newInput:focus {
+    border: 0.5px solid #0ecd27;
+}
+
+.saveBtn {
+    grid-area: saveBtn;
+    background-color: #0078d4;
+    color: #f5f5f5;
+}
+
+.cancelBtn {
+    grid-area: cancelBtn;
+    color: #0078d4;
+    background-color: #f5f5f5;
+}
+
+.saveBtn,
+.cancelBtn {
+    padding: 8px 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.cancelBtn:hover {
+    background-color: #ffd700;
+    color: #333333;
+}
+
+/* * File List * */
+#fileList {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.folder-item {
+    border: none;
+    font-size: 1rem;
+    display: block;
+    text-align: left;
+    padding: 15px;
+    cursor: move;
+}
+
+.folder-item:hover {
+    background-color: #e1dfdf;
+}
+
+/* ** Main ** */
+.main {
+    position: relative;
+    border-left: 0.2px solid #dadade;
+    border-right: 0.2px solid #dadade;
+    padding: 20px;
+}
+
+/* * File Title * */
+#editorHeader {
+    display: grid;
+    grid-template-columns: auto max-content;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#fileTitleContainer {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+#fileTitleContainer .backIcon {
+    display: none;
+}
+
+#fileTitle {
+    display: inline-block;
+}
+
+#renameInputContainer {
+    width: 50%;
+}
+
+/* * File Menu * */
+#fileMenuBtn {
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+#fileMenuBtn:hover {
+    background-color: #e4e4e4;
+}
+
+#fileMenu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    color: #333333;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    font-size: 18px;
+    text-align: left;
+    padding: 5px 0;
+    margin: 0;
+    min-width: 150px;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+#fileMenu li {
+    padding: 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#fileMenu li:hover {
+    background-color: #f1f1f1;
+}
+
+/* * Task List * */
+#taskList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#taskList li {
+    position: relative;
+    /* Ensure the icon is positioned relative to the li */
+    border: none;
+    outline: none;
+    display: grid;
+    grid-template-columns: 30px auto 30px;
+    align-items: center;
+}
+
+/* Changed from 16px to 1rem */
+#taskList li .list-item {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    border-bottom: 1px solid #e0d3d3;
+    background: none;
+    resize: none;
+    overflow-y: scroll;
+    width: 100%;
+    height: 2.2rem;
+    padding: 10px 0;
+    cursor: text;
+    transition: border-bottom 0.4s ease;
+}
+
+#taskList li .list-item:focus {
+    border-bottom: 2px solid rgb(5, 150, 3);
+}
+
+textarea.list-item {
+    line-height: 1.2;
+    /* Adjust line-height to ensure single line height */
+    height: auto;
+    /* Ensure height is auto */
+    min-height: 40px;
+    /* Set a minimum height */
+    overflow-y: hidden;
+    /* Hide vertical scrollbar */
+}
+
+#taskList .icon-dots-three-vertical1 {
+    display: none;
+    /* Initially hide the icon */
+    position: absolute;
+    right: 8px;
+    cursor: pointer;
+}
+
+#taskList li:hover .icon-dots-three-vertical1 {
+    display: inline-block;
+    /* Show the icon on hover */
+}
+
+.task-menu {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+    width: 200px;
+    border-radius: 8px;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.task-menu li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.task-menu li:hover {
+    background-color: #f1f1f1;
+}
+
+/* * Completed Task List * */
+#completedTaskList {
+    list-style-type: none;
+    padding: 0;
+    display: none;
+}
+
+#completedTaskList li {
+    position: relative;
+    border: none;
+    outline: none;
+    display: grid;
+    grid-template-columns: 30px auto 30px;
+    align-items: center;
+}
+
+#completedTaskList li .list-item {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    border-bottom: 1px solid #e0d3d3;
+    background: none;
+    resize: none;
+    overflow-y: scroll;
+    width: 100%;
+    height: 2.2rem;
+    padding: 10px 0;
+    cursor: text;
+    transition: border-bottom 0.4s ease;
+}
+
+#completedTaskList li .list-item.completed {
+    text-decoration: line-through;
+}
+
+#completedTaskList .icon-trash-o {
+    cursor: pointer;
+}
+
+/* * Add Task Button * */
+#addTaskBtn {
+    position: fixed;
+    bottom: 10%;
+    right: 48%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background-color: #e7efe7;
+    fill: rgb(5, 150, 3);
+    transition: background-color 0.3s ease;
+}
+
+#addTaskBtn:hover {
+    background-color: #e4e4e4;
+}
+
+/* ** Right Side Details ** */
+.right-side {
+    padding: 20px;
+    display: grid;
+    grid-template-rows: max-content 30px max-content;
+    gap: 10px;
+}
+
+/* * Task Duetitle Input * */
+.taskInput {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+    resize: none;
+    overflow-y: scroll;
+    width: 100%;
+    height: 40px;
+    padding: 10px 0;
+    cursor: text;
+}
+
+/* * Task Date * */
+#taskDate {
+    background: none;
+    border: none;
+    width: 130px;
+    font-size: 1rem;
+    height: 20px;
+}
+
+/* * Task Detail * */
+.detail-content {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 10px;
+    color: #400000;
+    border-top: 0.2px solid #dadade;
+    padding-top: 10px;
+}
+
+.detail-content span {
+    padding-top: 8px;
+    font-size: 0.9rem;
+    color: #8c8f89;
+}
+
+.detail {
+    background: none;
+    font-size: 1rem;
+    text-align: auto;
+    min-height: 100px;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow-y: scroll;
+    width: 100%;
+    cursor: text;
+}
+
+.detail:focus {
+    border: 0.5px solid #8cbe93;
+    border-radius: 8px;
+}
+
+/* * Icons * */
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+.icon {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-plus:before {
+    content: "\e018";
+}
+
+.icon-circle:before {
+    content: "\e017";
+}
+
+.icon-check_circle:before {
+    content: "\e012";
+}
+
+.icon-dots-three-vertical:before {
+    content: "\e033";
+}
+
+.icon-check1:before {
+    content: "\e009";
+}
+
+.icon-trash-o:before {
+    content: "\e021";
+}
+
+.icon-arrow_back_ios:before {
+    content: "\a001";
+}
+
+.icon-cog:before {
+    content: "\e032";
+}
+
+.icon-search:before {
+    content: "\e907";
+}
+
+.icon-read-more:before {
+    content: "\e002";
+}
+
+.icon-calendar-check-o:before {
+    content: "\e014";
+}
+
+.icon-dots-three-vertical1:before {
+    content: "\e905";
+}
+
+svg {
+    pointer-events: auto;
+    /* Ensure SVG itself responds to clicks */
+    user-select: none;
+    /* Avoid user selecting text */
+}

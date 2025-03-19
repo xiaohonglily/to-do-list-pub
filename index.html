@@ -38,13 +38,13 @@
                 <div id="newFileBtn"><span id="lists">Lists&nbsp;&nbsp;</span><span id="listsPlusIcon"
                         class="icon icon-plus"></span></div>
                 <div id="newFolderInputContainer" class="saveCancelSet">
-                    <input type="text" id="newFolderInput" class="newInput">
+                    <input type="text" id="newFolderInput" class="newInput userInput">
                     <button id="saveFolderBtn" class="saveBtn">SAVE</button>
                     <button id="cancelFolderBtn" class="cancelBtn">CANCEL</button>
                 </div>
                 <!-- File List -->
                 <ul id="fileList" class="sortable-list">
-                    <li class="folder-item">My Tasks</li>
+                    <li class="folder-item userInput">My Tasks</li>
                 </ul>
             </div>
         </nav>
@@ -59,7 +59,7 @@
                         <h2 id="fileTitle">My Tasks</h2>
                     </div>
                     <div id="renameInputContainer" class="saveCancelSet">
-                        <input type="text" id="renameInput" class="newInput" />
+                        <input type="text" id="renameInput" class="newInput userInput" />
                         <button id="saveRenameBtn" class="saveBtn">SAVE</button>
                         <button id="cancelRenameBtn" class="cancelBtn">CANCEL</button>
                     </div>
@@ -81,10 +81,10 @@
                 <!-- Task List -->
                 <ul id="taskList">
                     <!-- Task items will be dynamically added here
-                    <li>
+                    <li id="taskListItem">
                         <span class="icon icon-circle"></span> // Default
                         <span class="icon icon-check_circle"></span> // Hover
-                        <textarea rows="1" class="list-item"></textarea>
+                        <textarea rows="1" class="list-item userInput"></textarea>
                         <span class="icon icon-dots-three-vertical1"></span>
                         <ul class="task-menu">
                             <li class="deletOption">Delete this task</li>
@@ -97,7 +97,7 @@
                     <!-- Completed task items will be dynamically added here
                     <li id="completedTask">
                         <span class="icon icon-check1"></span> // Complete
-                        <textarea rows="1" class="list-item completed"></textarea>
+                        <textarea rows="1" class="list-item completed userInput"></textarea>
                         <span class="icon icon-trash-o"></span>
                     </li>
                     -->
@@ -113,17 +113,15 @@
         <!-- Right Side Details -->
         <aside id="right-side" class="right-side">
             <!-- Task Duetitle Input -->
-            <textarea rows="1" id="taskInput" class="taskInput" name="task"></textarea>
+            <textarea rows="1" id="taskInput" class="taskInput userInput" name="task"></textarea>
             <!-- Task Date -->
             <input type="date" id="taskDate" name="date">
             <!-- Task Detail -->
             <div id="detail-content" class="detail-content">
                 <span class="icon icon-read-more"></span>
-                <textarea id="taskDetail" class="detail" placeholder="Add details..."></textarea>
+                <textarea id="taskDetail" class="detail userInput" placeholder="Add details..."></textarea>
             </div>
         </aside>
-
-
     </div>
     <!-- Import SortableJS via CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
